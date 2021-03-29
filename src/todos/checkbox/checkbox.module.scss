@@ -1,0 +1,73 @@
+@keyframes click-wave {
+  0% {
+    height: 20px;
+    width: 20px;
+    opacity: 0.35;
+    position: relative;
+  }
+
+  100% {
+    height: 100px;
+    width: 100px;
+    margin-left: -30px;
+    margin-top: -30px;
+    opacity: 0;
+  }
+}
+
+.label{
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  text-align: right;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  cursor: pointer;
+    font-size: 20px;
+    white-space: normal;
+.checkbox {
+  appearance: none;
+  height: 40px ;
+  min-width: 40px;
+  width: 40px;
+  transition: all 0.15s ease-out 0s;
+  background: white;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  outline: none;
+  z-index: 1000;
+  margin-right: 20px;
+  &:hover {
+    background: #9faab7;
+  }
+  &:checked {
+    background: rgba(0,0,255, .3);
+    &:before {
+      height: 40px;
+      width: 40px;
+      position: absolute;
+      content: "✔";
+      display: block;
+      font-size: 26.66667px;
+      text-align: center;
+      line-height: 40px;
+    }
+    &:after{
+  animation: click-wave .6s;
+  background: blue;
+  content: '';
+  display: inline-block;
+  position: relative;
+  z-index: 100;
+    }
+  }
+}
+
+}
+
+.label.done{
+text-decoration: line-through;
+}
