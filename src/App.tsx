@@ -1,10 +1,11 @@
 import React from 'react';
-import './app.module.scss';
+import styles from './app.module.scss';
+import Todos from './todos/todos';
 
 function App() {
   return (
-    <div className="App">
-      Hello
+    <div className={styles.app}>
+     <Todos />
     </div>
   );
 }
