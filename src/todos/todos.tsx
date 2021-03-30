@@ -1,16 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { itemType } from '../redux/reducers/todos'
 import { RootStateType } from '../redux/store'
 import TodoItem from './todoItem/todoItem'
-import { FaCheckSquare, FaListAlt, FaPlusSquare, FaStar, FaTrashAlt } from "react-icons/fa";
 import styles from './todos.module.scss'
 import AddItemForm from '../addItemForm/addItemForm'
+import FilterForm, { filterType } from '../filterForm/filterForm'
+
 
 const Todos = () => {
+  const [filter, setFilter] = useState<filterType>('all')
 
   const todoList = useSelector<RootStateType, Array<itemType>>((state) => state.todos.todos)
-    .map(({id, label, isDone, isImportant}) => {
+
+
+  const filterValueChange = (value: filterType) => {
+    setFilter(value)
+  }
+
+  const onFilter = (fltr: filterType, arr: Array<itemType>) => {
+    switch (fltr) {
+      case 'all': return arr
+      case 'done': return arr.filter((el) => el.isDone)
+      case 'todo': return arr.filter((el) => !el.isDone)
+      case 'important': return arr.filter((el) => el.isImportant)
+      default: return arr
+    }
+  }
+  const result = onFilter(filter, todoList).map(
+    ({ id, label, isDone, isImportant }) => {
       return (
         <TodoItem
           key={id}
@@ -19,16 +37,15 @@ const Todos = () => {
           important={isImportant}
           id={id}
         />
-      )
-    })
-
-
+      );
+    }
+  );
+  
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.todosHeader}>Daily tasks</h1>
-      <FaCheckSquare style={{ color: 'black' }} />
-      <FaListAlt style={{ color: 'black' }} />
-      <ul className={styles.todos}>{todoList}</ul>
+      <FilterForm filterValueChange={filterValueChange} />
+      <ul className={styles.todos}>{result}</ul>
       <AddItemForm />
     </div>
   );

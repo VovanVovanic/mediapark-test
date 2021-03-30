@@ -1,7 +1,7 @@
 .button{
   color: black;
   font-size: 16px;
-  width: 70px;
+  width: 70px ;
   height: 35px;
   cursor: pointer;
   background-color: lightgrey;
@@ -12,4 +12,17 @@
     font-size: 20px;
     transition: .3s;
   }
+}
+.button.text{
+  width: 70px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-left: 5px;
+  &:hover{
+    font-size: 13px;
+  }
+}
+.button.text.active{
+  background-color: lightskyblue;
+  color: blue
 }

@@ -3,13 +3,21 @@ import styles from './button.module.scss'
 
 type buttonType = {
   children: React.ReactNode;
-  onClick: ()=>void
+  onClick: () => void
+  type?: string
+  status?: boolean
 };
 
-const Button:React.FC<buttonType> = ({ children, onClick }) => {
+const Button: React.FC<buttonType> = ({ children, onClick, type, status}) => {
+  
+  const clss = [
+    styles.button
+  ]
+  type && clss.push(styles.text)
+  status && clss.push(styles.active)
   return (
     <button
-      className={styles.button}
+      className={clss.join(' ')}
     onClick={onClick}>
       {children}
     </button>

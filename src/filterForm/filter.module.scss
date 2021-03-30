@@ -1,0 +1,12 @@
+.filterForm{
+  composes: addItemForm from "../addItemForm/addItemForm.module.scss";
+}
+
+.buttons{
+ composes: addItemForm from "../addItemForm/addItemForm.module.scss";
+ margin-bottom: 30px;
+ h4{
+   padding-left: 15px;
+ }
+ 
+}
