@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react'
 import { FaPlusSquare } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import Button from '../button/button'
-import { addItem } from '../redux/actions/todos'
+import { fetchCreateTasks } from '../redux/actions/todos'
 import styles from './addItemForm.module.scss'
 
 const AddItemForm = () => {
@@ -17,7 +17,8 @@ const AddItemForm = () => {
         setValue('')
         return
       }
-      dispatch(addItem(value))
+      const payload = {label: value, isDone: false, isImportant: false}
+      dispatch(fetchCreateTasks(payload));
       setValue("");
     }
 

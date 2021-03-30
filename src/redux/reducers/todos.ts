@@ -1,4 +1,4 @@
-import { CHANGE_IMPORTANCE, CHANGE_STATUS, DELETE_ITEM, ADD_ITEM, todosActionsType} from './../actions/todos';
+import { CHANGE_IMPORTANCE, CHANGE_STATUS, DELETE_ITEM, ADD_ITEM, todosActionsType, GET_ITEMS} from './../actions/todos';
 import { v1 } from "uuid";
 
 export type itemType = { id: string, label: string, isDone: boolean, isImportant: boolean }
@@ -6,16 +6,12 @@ type todosType = typeof initState;
 
 const initState = {
   loading: false,
-  todos: [
-    { id: v1(), label: 'Drink tea', isDone: false, isImportant: false },
-    { id: v1(), label: 'Have a lunch', isDone: false, isImportant: false },
-    { id: v1(), label: 'Play game', isDone: false, isImportant: false },
-    { id: v1(), label: 'Learn React', isDone: false, isImportant: false},
-    {id:v1(), label: 'Buy some meal hfdkjhd and finish this test finally', isDone: false, isImportant: false},
-  ]
+  todos: [] as Array<itemType>
 }
 export const todosReducer = (state: todosType = initState, action: todosActionsType): todosType => {
   switch (action.type) {
+    case GET_ITEMS:
+      return{...state, todos:[...action.items]}
     case CHANGE_STATUS:
       return {
         ...state, todos: state.todos.map((el) => {

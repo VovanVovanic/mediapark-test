@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { itemType } from '../redux/reducers/todos'
 import { RootStateType } from '../redux/store'
 import TodoItem from './todoItem/todoItem'
@@ -7,13 +7,21 @@ import styles from './todos.module.scss'
 import AddItemForm from '../addItemForm/addItemForm'
 import FilterForm, { filterType } from '../filterForm/filterForm'
 import SearchForm from '../searchForm/searchForm'
+import Button from '../button/button'
+import { fetchGetTasks } from '../redux/actions/todos'
 
 
 const Todos = () => {
   const [filter, setFilter] = useState<filterType>('all')
   const[search, setSearch] = useState<string>('')
   const todoList = useSelector<RootStateType, Array<itemType>>((state) => state.todos.todos)
-
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+     dispatch(fetchGetTasks());
+  })
+   
+  
 
   const filterValueChange = (value: filterType) => {
     setFilter(value)

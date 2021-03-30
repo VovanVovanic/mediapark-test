@@ -1,6 +1,6 @@
-import React, { ChangeEvent } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
-import { changeStatus } from '../../redux/actions/todos'
+import {fetchUpdateTask } from '../../redux/actions/todos'
 import styles from './checkbox.module.scss'
 
 type checkboxType = {
@@ -12,8 +12,8 @@ type checkboxType = {
 const Checkbox: React.FC<checkboxType> = ({ label, checked, id, important }) => {
   const dispatch = useDispatch()
   
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(changeStatus(id, e.currentTarget.checked));
+  const onChangeHandler = () => {
+    dispatch(fetchUpdateTask(id, 1));
   };
   const cls = [
     styles.label

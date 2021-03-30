@@ -2,15 +2,12 @@ import React from "react";
 import Button from "../../button/button";
 import Checkbox from "../checkbox/checkbox";
 import {
-  FaCheckSquare,
-  FaListAlt,
-  FaPlusSquare,
   FaStar,
   FaTrashAlt,
 } from "react-icons/fa";
 import styles from "./item.module.scss";
 import { useDispatch } from "react-redux";
-import { changeImportance, deleteItem } from "../../redux/actions/todos";
+import {fetchDeleteTask, fetchUpdateTask } from "../../redux/actions/todos";
 
 type listItemType = {
   label: string;
@@ -22,10 +19,10 @@ const TodoItem: React.FC<listItemType> = ({ label, isDone, important, id }) => {
   const dispatch = useDispatch()
 
   const onChangeImportance = () => {
-    dispatch(changeImportance(id, !important));
+    dispatch(fetchUpdateTask(id, 0));
   }
   const onDeleteHandler = () => {
-    dispatch(deleteItem(id));
+    dispatch(fetchDeleteTask(id));
   }
   return (
     <li className={styles.item}>

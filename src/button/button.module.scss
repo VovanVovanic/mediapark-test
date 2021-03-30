@@ -8,19 +8,22 @@
   border: none;
   border-radius: 10px;
   outline: none;
+  transition: all .2s;
   &:hover{
-    font-size: 20px;
-    transition: .3s;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  &:active{
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
 }
+
 .button.text{
   width: 70px;
   font-size: 13px;
   font-weight: bold;
   margin-left: 5px;
-  &:hover{
-    font-size: 13px;
-  }
 }
 .button.text.active{
   background-color: lightskyblue;
