@@ -7,8 +7,9 @@ type checkboxType = {
   label: string
   checked: boolean
   id: string
+  important: boolean
 }
-const Checkbox: React.FC<checkboxType> = ({ label, checked, id }) => {
+const Checkbox: React.FC<checkboxType> = ({ label, checked, id, important }) => {
   const dispatch = useDispatch()
   
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +19,7 @@ const Checkbox: React.FC<checkboxType> = ({ label, checked, id }) => {
     styles.label
   ]
   checked && cls.push(styles.done)
+  important && cls.push(styles.important)
   return (
     <label className={cls.join(' ')}>
       <input

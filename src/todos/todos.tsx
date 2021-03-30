@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { itemType } from '../redux/reducers/todos'
 import { RootStateType } from '../redux/store'
 import TodoItem from './todoItem/todoItem'
+import { FaCheckSquare, FaListAlt, FaPlusSquare, FaStar, FaTrashAlt } from "react-icons/fa";
 import styles from './todos.module.scss'
 
 const Todos = () => {
@@ -22,11 +23,15 @@ const Todos = () => {
 
 
   return (
-    <div className = {styles.wrapper}>
+    <div className={styles.wrapper}>
       <h1 className={styles.todosHeader}>Daily tasks</h1>
-      <ul className={styles.todos}>
-        {todoList}
-      </ul>
+      
+      
+      <FaPlusSquare style={{ color: 'blue' }} />
+      <FaCheckSquare style={{ color: 'black' }} />
+      <FaListAlt style={{ color: 'black' }} />
+      
+      <ul className={styles.todos}>{todoList}</ul>
     </div>
   );
 }
