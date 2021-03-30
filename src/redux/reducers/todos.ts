@@ -1,4 +1,4 @@
-import { CHANGE_IMPORTANCE, CHANGE_STATUS, DELETE_ITEM, todosActionsType } from './../actions/todos';
+import { CHANGE_IMPORTANCE, CHANGE_STATUS, DELETE_ITEM, ADD_ITEM, todosActionsType } from './../actions/todos';
 import { v1 } from "uuid";
 
 export type itemType = { id: string, label: string, isDone: boolean, isImportant: boolean }
@@ -35,7 +35,10 @@ export const todosReducer = (state: todosType = initState, action: todosActionsT
         })
       }
     case DELETE_ITEM:
-      return{...state, todos: state.todos.filter((el)=>el.id !== action.id)}
+      return { ...state, todos: state.todos.filter((el) => el.id !== action.id) }
+    case ADD_ITEM:
+      const newItem = { id: v1(), label: action.label, isDone: false, isImportant: false }
+      return{...state, todos:[...state.todos, newItem]}
     default: return state
   }
 }

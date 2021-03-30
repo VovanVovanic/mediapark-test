@@ -5,6 +5,7 @@ import { RootStateType } from '../redux/store'
 import TodoItem from './todoItem/todoItem'
 import { FaCheckSquare, FaListAlt, FaPlusSquare, FaStar, FaTrashAlt } from "react-icons/fa";
 import styles from './todos.module.scss'
+import AddItemForm from '../addItemForm/addItemForm'
 
 const Todos = () => {
 
@@ -25,13 +26,10 @@ const Todos = () => {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.todosHeader}>Daily tasks</h1>
-      
-      
-      <FaPlusSquare style={{ color: 'blue' }} />
       <FaCheckSquare style={{ color: 'black' }} />
       <FaListAlt style={{ color: 'black' }} />
-      
       <ul className={styles.todos}>{todoList}</ul>
+      <AddItemForm />
     </div>
   );
 }
