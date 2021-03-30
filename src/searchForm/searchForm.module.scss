@@ -1,0 +1,6 @@
+.searchForm{
+  composes: addItemForm from "../addItemForm/addItemForm.module.scss";
+}
+.searchInput{
+  composes: addInput from "../addItemForm/addItemForm.module.scss";
+}

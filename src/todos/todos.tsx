@@ -6,11 +6,12 @@ import TodoItem from './todoItem/todoItem'
 import styles from './todos.module.scss'
 import AddItemForm from '../addItemForm/addItemForm'
 import FilterForm, { filterType } from '../filterForm/filterForm'
+import SearchForm from '../searchForm/searchForm'
 
 
 const Todos = () => {
   const [filter, setFilter] = useState<filterType>('all')
-
+  const[search, setSearch] = useState<string>('')
   const todoList = useSelector<RootStateType, Array<itemType>>((state) => state.todos.todos)
 
 
@@ -27,7 +28,20 @@ const Todos = () => {
       default: return arr
     }
   }
-  const result = onFilter(filter, todoList).map(
+  const resultFilter = onFilter(filter, todoList)
+  
+  const resultSearch = (value: string, arr: Array<itemType>) => {
+    if (!value) { return arr }
+    return arr.filter((el) => {
+      return el.label.toLowerCase().indexOf(value.toLowerCase()) > -1
+    })
+  }
+
+  const onSearch = (value: string) => {
+     setSearch(value)
+  };
+
+  const mappedResult = resultSearch(search, resultFilter).map(
     ({ id, label, isDone, isImportant }) => {
       return (
         <TodoItem
@@ -40,12 +54,12 @@ const Todos = () => {
       );
     }
   );
-  
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.todosHeader}>Daily tasks</h1>
+      <SearchForm onSearch={onSearch}/>
       <FilterForm filterValueChange={filterValueChange} />
-      <ul className={styles.todos}>{result}</ul>
+      <ul className={styles.todos}>{mappedResult}</ul>
       <AddItemForm />
     </div>
   );

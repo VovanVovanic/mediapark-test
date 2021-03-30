@@ -36,11 +36,6 @@ const FilterForm: React.FC<filterFormType> = ({ filterValueChange }) => {
   return (
     <>
       <div className={styles.filterForm}>
-        <input
-          type={"text"}
-          placeholder={"type here to find tasks"}
-          className={styles.filterInput}
-        />
       </div>
       <div className={styles.buttons}>
         <h4>Filter tasks by: </h4>
