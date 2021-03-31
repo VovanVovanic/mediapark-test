@@ -7,19 +7,25 @@ import styles from './todos.module.scss'
 import AddItemForm from '../addItemForm/addItemForm'
 import FilterForm, { filterType } from '../filterForm/filterForm'
 import SearchForm from '../searchForm/searchForm'
-import Button from '../button/button'
 import { fetchGetTasks } from '../redux/actions/todos'
+import Spinner from '../spinner/spinnes'
+import Message from '../message/message'
 
 
 const Todos = () => {
   const [filter, setFilter] = useState<filterType>('all')
   const[search, setSearch] = useState<string>('')
   const todoList = useSelector<RootStateType, Array<itemType>>((state) => state.todos.todos)
+    const isLoading = useSelector<RootStateType, boolean>((state) => state.todos.loading)
+  const message = useSelector<RootStateType, string>((state) => state.todos.error)
+  console.log(message);
+  
+  
   const dispatch = useDispatch()
   
   useEffect(() => {
      dispatch(fetchGetTasks());
-  })
+  },[])
    
   
 
@@ -65,10 +71,17 @@ const Todos = () => {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.todosHeader}>Daily tasks</h1>
-      <SearchForm onSearch={onSearch}/>
+      {
+        message ? <Message text={message}/> :
+        <>
+        <SearchForm onSearch={onSearch}/>
       <FilterForm filterValueChange={filterValueChange} />
-      <ul className={styles.todos}>{mappedResult}</ul>
+      <ul className={styles.todos}>
+        { isLoading ? <Spinner /> : mappedResult}
+      </ul>
       <AddItemForm />
+      </>
+      }
     </div>
   );
 }

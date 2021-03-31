@@ -1,8 +1,9 @@
 
 
-import { AnyAction, Dispatch } from 'redux';
+import { Dispatch } from 'redux';
 import { login, register } from '../../api/auth';
 import { dataType } from './../../login/loginForm';
+import { onErrorMsgCommon } from './error';
 
 export const SET_LOADING = 'SET_LOADING'
 export const SET_AUTH = 'SET_AUTH'
@@ -12,8 +13,8 @@ export const ON_SESSION_EXPIRED = 'ON_SESSION_EXPIRED'
 
 export type authActionType = setLoadingType | setMessageType | setAuthType | setTokenType | removeTokenType
 
-type setLoadingType = ReturnType<typeof setAuthLoading>
-type setMessageType = ReturnType<typeof setMessage>
+export type setLoadingType = ReturnType<typeof setAuthLoading>
+export type setMessageType = ReturnType<typeof setMessage>
 type setAuthType = ReturnType<typeof setAuth>
 type setTokenType = ReturnType<typeof setToken>
 type removeTokenType = ReturnType<typeof removeToken>
@@ -79,8 +80,7 @@ export const fetchAuth = (data: dataType, fetchType: number) => async (dispatch:
     }, 2000)
   }
   catch (e) {
-    let msg = e.response.data.error.message
-    dispatch(setMessage(msg))
+    onErrorMsgCommon(e, dispatch)
   }
   dispatch(setAuthLoading(false))
 }
