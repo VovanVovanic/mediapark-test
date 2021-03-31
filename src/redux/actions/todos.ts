@@ -1,38 +1,19 @@
-import { taskStatuses } from './todos';
+
 import { Action, Dispatch } from "redux"
 import { ThunkAction } from "redux-thunk"
-import { createTask, deleteTask, getTasks, updateTask } from "../../app/app"
+import { createItemType } from "../../addItemForm/addItemForm"
+import { createTask, deleteTask, getTasks, updateTask } from "../../api/api"
 import { itemType } from "../reducers/todos"
 import { RootStateType } from "../store"
 
-export const CHANGE_STATUS = 'CHANGE_STATUS'
-export const CHANGE_IMPORTANCE = 'CHANGE_IMPORTANCE'
-export const DELETE_ITEM = 'DELETE_ITEM'
-export const ADD_ITEM = 'ADD_ITEM'
 export const GET_ITEMS = "GET_ITEMS"
 
-export type todosActionsType = changeStatusType | changeImportanceType | deleteItemType | addItemType |getItemsType
+export type todosActionsType = getItemsType
 
-type changeStatusType = ReturnType<typeof changeStatus>
-type changeImportanceType = ReturnType<typeof changeImportance>
-type deleteItemType = ReturnType<typeof deleteItem>
-type addItemType = ReturnType<typeof addItem>
+
 type getItemsType = ReturnType<typeof getAllItems>
 
 
-
-export const changeStatus = (id: string, status: boolean) => {
-  return{type: CHANGE_STATUS, id, status} as const
-}
-export const changeImportance = (id: string, importance: boolean) => {
-  return{type: CHANGE_IMPORTANCE, id, importance} as const
-}
-export const deleteItem= (id: string) => {
-  return{type: DELETE_ITEM, id} as const
-}
-export const addItem= (label:string) => {
-  return{type: ADD_ITEM, label} as const
-}
 export const getAllItems= (items:Array<itemType>) => {
   return{type: GET_ITEMS, items} as const
 }
@@ -41,10 +22,10 @@ export const getAllItems= (items:Array<itemType>) => {
 export const fetchGetTasks = () => async (dispatch: Dispatch) => {
   try {
     const res = await getTasks()
-    const arr = Object.keys(res).map((el) => {
+    const arr = Object.entries(res).map(([key, value]) => {
       return {
-        ...res[el],
-        id:el
+        key,
+        ...value
       }
     })
     dispatch(getAllItems(arr))
@@ -55,7 +36,7 @@ export const fetchGetTasks = () => async (dispatch: Dispatch) => {
   }
 }
 
-export const fetchCreateTasks = (payload:itemType):ThunkType => async (dispatch) => {
+export const fetchCreateTasks = (payload:createItemType):ThunkType => async (dispatch) => {
   try {
     await createTask(payload)
     dispatch(fetchGetTasks())

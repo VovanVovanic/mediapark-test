@@ -5,6 +5,12 @@ import Button from '../button/button'
 import { fetchCreateTasks } from '../redux/actions/todos'
 import styles from './addItemForm.module.scss'
 
+
+export type createItemType = {
+  label: string
+  isDone: boolean
+  isImportant: boolean
+}
 const AddItemForm = () => {
   const [value, setValue] = useState<string>('')
   const [error, setError] = useState<boolean>(false)

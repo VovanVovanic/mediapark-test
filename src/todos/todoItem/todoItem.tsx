@@ -13,7 +13,7 @@ type listItemType = {
   label: string;
   isDone: boolean;
   important: boolean;
-  id: string
+  id: string 
 };
 const TodoItem: React.FC<listItemType> = ({ label, isDone, important, id }) => {
   const dispatch = useDispatch()
