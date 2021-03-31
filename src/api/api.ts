@@ -19,3 +19,4 @@ export const updateTask = (id: string, payload: itemType) => {
   return axios.put(`https://todotest-3747d-default-rtdb.firebaseio.com/todos/${id}.json`,payload)
     .then((response) => response.data)
 }
+
