@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Button from '../button/button'
+import Button from '../../ui/button/button';
 import styles from './filter.module.scss'
 
 export type filterType = 'all' | 'done' | 'todo' | 'important'
@@ -8,7 +8,7 @@ type filterFormType = {
 };
 const FilterForm: React.FC<filterFormType> = ({ filterValueChange }) => {
   const [active, setActive] = useState<filterType>('all')
-  
+
   const onClickHandler = (filter: filterType) => {
     filterValueChange(filter);
     setActive(filter)
@@ -22,7 +22,7 @@ const FilterForm: React.FC<filterFormType> = ({ filterValueChange }) => {
   ].map((el) => {
     let isActive = el.name === active;
     return (
-      
+
       <Button
         key={el.name}
         onClick={() => onClickHandler(el.name as filterType)}

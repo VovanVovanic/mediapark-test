@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './app.module.scss';
-import Login from './login/loginForm';
+import Login from './components/forms/login/loginForm';
+import Todos from './components/todos/todos';
+import Spinner from './components/ui/spinner/spinnes';
 import { autoLogin } from './redux/actions/auth';
 import { RootStateType } from './redux/store';
-import Spinner from './spinner/spinnes';
-import Todos from './todos/todos';
+
 
 function App() {
   const isLoading = useSelector<RootStateType, boolean>((state) => state.auth.isLoading)

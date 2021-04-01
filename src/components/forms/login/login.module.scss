@@ -8,7 +8,15 @@
   border-radius: 6px;
   background-color: #e4eee9;
   background-image: linear-gradient(315deg, #e4eee9 0%, #93a5ce 74%);
-
+  @media screen and (max-width: 576px) {
+    max-width: 320px;
+    width: 320px;
+  }
+  @media screen and (max-width: 320px) {
+    max-width: 280px;
+    width: 280px;
+    padding: 10px;
+  }
   .loginBtns {
     display: flex;
     width: 100%;
@@ -52,4 +60,8 @@
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 50px;
+  @media screen and (max-width: 576px) {
+    max-width: 320px;
+    font-size: 30px;
+  }
 }

@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import Button from '../button/button';
 import { useFormik } from "formik";
 import styles from './login.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import Message from '../message/message';
-import { RootStateType } from '../redux/store';
-import { fetchAuth } from '../redux/actions/auth';
+import { RootStateType } from '../../../redux/store';
+import { fetchAuth } from '../../../redux/actions/auth';
+import Button from '../../ui/button/button';
+import Message from '../../ui/message/message';
+
 
 
 
@@ -49,7 +50,7 @@ const Login = () => {
       formik.resetForm();
     },
   });
- 
+
 
   const onLogHandler = (type: string) => {
     setRequestType(type)
@@ -89,7 +90,7 @@ const Login = () => {
           </Button>
         </div>
       </form>
-     {message && <Message text={message}/>}
+      {message && <Message text={message} />}
     </>
   );
 }

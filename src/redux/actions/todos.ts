@@ -1,8 +1,8 @@
 
 import { Action, Dispatch } from "redux"
 import { ThunkAction } from "redux-thunk"
-import { createItemType } from "../../addItemForm/addItemForm"
 import { createTask, deleteTask, getTasks, updateTask } from "../../api/api"
+import { createItemType } from "../../components/forms/addItemForm/addItemForm"
 import { itemType } from "../reducers/todos"
 import { RootStateType } from "../store"
 import { setMessageType } from "./auth"
@@ -12,7 +12,7 @@ export const GET_ITEMS = "GET_ITEMS"
 export const SET_TODO_LOADING = 'SET_TODO_LOADING'
 export const ADD_TASK = 'ADD_TASK'
 
-export type todosActionsType = getItemsType | setLoadingType | setMessageType 
+export type todosActionsType = getItemsType | setLoadingType | setMessageType
 
 
 type getItemsType = ReturnType<typeof getAllItems>

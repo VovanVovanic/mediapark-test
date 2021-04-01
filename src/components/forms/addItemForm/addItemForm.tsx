@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState } from 'react'
 import { FaPlusSquare } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
-import Button from '../button/button'
-import { fetchCreateTasks } from '../redux/actions/todos'
+import { fetchCreateTasks } from '../../../redux/actions/todos'
+import Button from '../../ui/button/button'
 import styles from './addItemForm.module.scss'
 
 
@@ -11,6 +11,7 @@ export type createItemType = {
   isDone: boolean
   isImportant: boolean
 }
+
 const AddItemForm = () => {
   const [value, setValue] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
@@ -23,7 +24,7 @@ const AddItemForm = () => {
         setValue('')
         return
       }
-      const payload = {label: value, isDone: false, isImportant: false}
+      const payload = { label: value, isDone: false, isImportant: false }
       dispatch(fetchCreateTasks(payload));
       setValue("");
     }

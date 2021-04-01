@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import {fetchUpdateTask } from '../../redux/actions/todos'
+import { fetchUpdateTask } from '../../../redux/actions/todos'
 import styles from './checkbox.module.scss'
 
 type checkboxType = {
@@ -11,7 +11,7 @@ type checkboxType = {
 }
 const Checkbox: React.FC<checkboxType> = ({ label, checked, id, important }) => {
   const dispatch = useDispatch()
-  
+
   const onChangeHandler = () => {
     dispatch(fetchUpdateTask(id, 1));
   };

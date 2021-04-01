@@ -1,7 +1,7 @@
 
 import { Dispatch } from 'redux';
 import { login, register } from '../../api/auth';
-import { dataType } from './../../login/loginForm';
+import { dataType } from '../../components/forms/login/loginForm';
 import { onErrorMsgCommon } from './error';
 
 export const SET_LOADING = 'SET_LOADING'
@@ -10,7 +10,7 @@ export const SET_MESSAGE = 'SET_MESSAGE'
 export const SET_TOKEN = 'SET_TOKEN'
 export const ON_SESSION_EXPIRED = 'ON_SESSION_EXPIRED'
 
-export type authActionType = setLoadingType | setMessageType |  setTokenType | removeTokenType
+export type authActionType = setLoadingType | setMessageType | setTokenType | removeTokenType
 
 export type setLoadingType = ReturnType<typeof setAuthLoading>
 export type setMessageType = ReturnType<typeof setMessage>
@@ -96,7 +96,6 @@ export function autoLogin() {
         dispatch(setToken(token));
 
         dispatch(onSessionExpired((expiresDate.getTime() - new Date().getTime()) / 1000) as any);
-        // dispatch(setAuth(true))
       }
     }
   };

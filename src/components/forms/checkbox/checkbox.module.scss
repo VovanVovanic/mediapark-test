@@ -25,6 +25,9 @@
   font-size: 20px;
   white-space: normal;
   align-items: center;
+  @media screen and (max-width: 440px) {
+    font-size: 17px;
+  }
   .checkbox {
     appearance: none;
     height: 40px;
@@ -70,7 +73,7 @@
 .label.done {
   text-decoration: line-through;
 }
-.label.important{
+.label.important {
   color: red;
   font-weight: bolder;
 }

@@ -1,19 +1,20 @@
 import React from "react";
-import Button from "../../button/button";
-import Checkbox from "../checkbox/checkbox";
 import {
   FaStar,
   FaTrashAlt,
 } from "react-icons/fa";
 import styles from "./item.module.scss";
 import { useDispatch } from "react-redux";
-import {fetchDeleteTask, fetchUpdateTask } from "../../redux/actions/todos";
+import { fetchDeleteTask, fetchUpdateTask } from "../../../redux/actions/todos";
+import Checkbox from "../../forms/checkbox/checkbox";
+import Button from "../../ui/button/button";
+
 
 type listItemType = {
   label: string;
   isDone: boolean;
   important: boolean;
-  id: string 
+  id: string
 };
 const TodoItem: React.FC<listItemType> = ({ label, isDone, important, id }) => {
   const dispatch = useDispatch()
@@ -26,12 +27,12 @@ const TodoItem: React.FC<listItemType> = ({ label, isDone, important, id }) => {
   }
   return (
     <li className={styles.item}>
-      <Checkbox label={label} id={id} checked={isDone} important={important}/>
+      <Checkbox label={label} id={id} checked={isDone} important={important} />
       <div className={styles.buttons}>
         <Button onClick={onChangeImportance}>
           <FaStar style={{ color: "green" }} />
         </Button>
-        <Button onClick ={onDeleteHandler}>
+        <Button onClick={onDeleteHandler}>
           <FaTrashAlt style={{ color: "red" }} />
         </Button>
       </div>

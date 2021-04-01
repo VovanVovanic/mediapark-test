@@ -1,0 +1,18 @@
+.buttons {
+  composes: addItemForm from "../addItemForm/addItemForm.module.scss";
+  margin-bottom: 30px;
+
+  h4 {
+    padding-left: 15px;
+    @media screen and (max-width: 576px) {
+      display: none;
+    }
+  }
+  .filterBtns {
+    @media screen and (max-width: 576px) {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

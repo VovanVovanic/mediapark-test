@@ -1,26 +1,30 @@
 import axios from "axios"
-import { createItemType } from "../addItemForm/addItemForm"
+import { createItemType } from "../components/forms/addItemForm/addItemForm"
 import { itemType } from "../redux/reducers/todos"
 
 
+const instance = axios.create({
+    baseURL: 'https://todotest-3747d-default-rtdb.firebaseio.com',
+})
+
 export const getTasks = () => {
-  return axios.get<Array<itemType>>(`https://todotest-3747d-default-rtdb.firebaseio.com/todos.json`)
+  return instance.get<Array<itemType>>(`/todos.json`)
     .then((response) => response.data)
 }
 export const createTask = (payload: createItemType) => {
-  return axios.post(`https://todotest-3747d-default-rtdb.firebaseio.com/todos.json`, payload)
+  return instance.post(`/todos.json`, payload)
     .then((response) => {
       return response.data
     })
 }
 export const deleteTask = (id: string) => {
-  return axios.delete(`https://todotest-3747d-default-rtdb.firebaseio.com/todos/${id}.json`,)
+  return instance.delete(`/todos/${id}.json`,)
     .then((response) => {
       return response.data
     })
 }
 export const updateTask = (id: string, payload: itemType) => {
-  return axios.put(`https://todotest-3747d-default-rtdb.firebaseio.com/todos/${id}.json`,payload)
+  return instance.put(`/todos/${id}.json`,payload)
     .then((response) => {
      return response.data
     })
