@@ -5,17 +5,19 @@ import { createItemType } from "../../addItemForm/addItemForm"
 import { createTask, deleteTask, getTasks, updateTask } from "../../api/api"
 import { itemType } from "../reducers/todos"
 import { RootStateType } from "../store"
-import { setMessage, setMessageType } from "./auth"
+import { setMessageType } from "./auth"
 import { onErrorMsgCommon } from "./error"
 
 export const GET_ITEMS = "GET_ITEMS"
 export const SET_TODO_LOADING = 'SET_TODO_LOADING'
+export const ADD_TASK = 'ADD_TASK'
 
-export type todosActionsType = getItemsType | setLoadingType | setMessageType
+export type todosActionsType = getItemsType | setLoadingType | setMessageType 
 
 
 type getItemsType = ReturnType<typeof getAllItems>
 type setLoadingType = ReturnType<typeof setLoading>
+
 
 export const getAllItems = (items: Array<itemType>) => {
   return { type: GET_ITEMS, items } as const
@@ -24,16 +26,17 @@ export const setLoading = (loading: boolean) => {
   return { type: SET_TODO_LOADING, loading } as const
 }
 
+
 export const fetchGetTasks = () => async (dispatch: Dispatch) => {
   dispatch(setLoading(true))
   try {
     const res = await getTasks()
-    const arr = Object.entries(res).map(([key, value]) => {
-      return {
-        key,
-        ...value
-      }
-    })
+    let arr = [] as Array<itemType>
+    if (res !== null) {
+      arr = Object.entries(res).map(([id, value]) => {
+        return { ...value, id: id }
+      })
+    }
     dispatch(getAllItems(arr))
   }
   catch (e) {
@@ -58,7 +61,6 @@ export const fetchDeleteTask = (id: string): ThunkType => async (dispatch) => {
   try {
     await deleteTask(id)
     dispatch(fetchGetTasks())
-
   }
   catch (e) {
     onErrorMsgCommon(e, dispatch)

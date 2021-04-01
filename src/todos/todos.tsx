@@ -10,24 +10,28 @@ import SearchForm from '../searchForm/searchForm'
 import { fetchGetTasks } from '../redux/actions/todos'
 import Spinner from '../spinner/spinnes'
 import Message from '../message/message'
+import Button from '../button/button'
+import { logout } from '../redux/actions/auth'
 
 
 const Todos = () => {
   const [filter, setFilter] = useState<filterType>('all')
-  const[search, setSearch] = useState<string>('')
+  const [search, setSearch] = useState<string>('')
   const todoList = useSelector<RootStateType, Array<itemType>>((state) => state.todos.todos)
-    const isLoading = useSelector<RootStateType, boolean>((state) => state.todos.loading)
+  const isLoading = useSelector<RootStateType, boolean>((state) => state.todos.loading)
   const message = useSelector<RootStateType, string>((state) => state.todos.error)
-  console.log(message);
-  
-  
+
+
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
-     dispatch(fetchGetTasks());
-  },[])
-   
-  
+    dispatch(fetchGetTasks());
+  }, [])
+
+  const onLogout = () => {
+    dispatch(logout())
+    dispatch(fetchGetTasks())
+  }
 
   const filterValueChange = (value: filterType) => {
     setFilter(value)
@@ -43,7 +47,7 @@ const Todos = () => {
     }
   }
   const resultFilter = onFilter(filter, todoList)
-  
+
   const resultSearch = (value: string, arr: Array<itemType>) => {
     if (!value) { return arr }
     return arr.filter((el) => {
@@ -52,7 +56,7 @@ const Todos = () => {
   }
 
   const onSearch = (value: string) => {
-     setSearch(value)
+    setSearch(value)
   };
 
   const mappedResult = resultSearch(search, resultFilter).map(
@@ -71,17 +75,21 @@ const Todos = () => {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.todosHeader}>Daily tasks</h1>
-      {
-        message ? <Message text={message}/> :
+      {message ? (
+        <Message text={message} />
+      ) : (
         <>
-        <SearchForm onSearch={onSearch}/>
-      <FilterForm filterValueChange={filterValueChange} />
-      <ul className={styles.todos}>
-        { isLoading ? <Spinner /> : mappedResult}
-      </ul>
-      <AddItemForm />
-      </>
-      }
+          <SearchForm onSearch={onSearch} />
+          <FilterForm filterValueChange={filterValueChange} />
+          <ul className={styles.todos}>
+            {isLoading ? <Spinner /> : mappedResult}
+          </ul>
+          <AddItemForm />
+        </>
+      )}
+      <Button onClick={onLogout} type={"logout"}>
+        Logout
+      </Button>
     </div>
   );
 }

@@ -9,15 +9,20 @@ export const getTasks = () => {
 }
 export const createTask = (payload: createItemType) => {
   return axios.post(`https://todotest-3747d-default-rtdb.firebaseio.com/todos.json`, payload)
-    .then((response) => response.data)
+    .then((response) => {
+      return response.data
+    })
 }
-export const deleteTask = (id:string) => {
+export const deleteTask = (id: string) => {
   return axios.delete(`https://todotest-3747d-default-rtdb.firebaseio.com/todos/${id}.json`,)
-    .then((response) => response.data)
+    .then((response) => {
+      return response.data
+    })
 }
 export const updateTask = (id: string, payload: itemType) => {
-  
   return axios.put(`https://todotest-3747d-default-rtdb.firebaseio.com/todos/${id}.json`,payload)
-    .then((response) => response.data)
+    .then((response) => {
+     return response.data
+    })
 }
 

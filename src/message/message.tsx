@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from './message.module.scss'
+import  './message.scss'
 
 const Message:React.FC<{text:string}> = ({ text }) => {
   return (
-    <div className={styles.message}>{text}</div>
+    <span className={'message'}>{text}</span>
   )
 }
 export default Message

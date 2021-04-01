@@ -9,13 +9,13 @@ import Todos from './todos/todos';
 
 function App() {
   const isLoading = useSelector<RootStateType, boolean>((state) => state.auth.isLoading)
-  const auth = useSelector<RootStateType, boolean>((state)=>state.auth.isAuth)
+  const isAuth = useSelector<RootStateType, string>((state)=>state.auth.token)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(autoLogin());
   },[])
 
-  const isAuthorised = auth ? <Todos/> : <Login />
+  const isAuthorised = isAuth ? <Todos/> : <Login />
   return (
     <div className={styles.app}>
      {isLoading ? <Spinner/> : isAuthorised}

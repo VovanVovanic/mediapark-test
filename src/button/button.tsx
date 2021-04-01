@@ -15,7 +15,7 @@ const Button: React.FC<buttonType> = ({ children, onClick, type, status }) => {
   ]
   type && clss.push(styles.text)
   status && clss.push(styles.active)
-
+  type === 'logout' && clss.push(styles.logout)
   return (
     <button
       className={clss.join(' ')}

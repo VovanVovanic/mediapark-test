@@ -1,5 +1,4 @@
 
-
 import { Dispatch } from 'redux';
 import { login, register } from '../../api/auth';
 import { dataType } from './../../login/loginForm';
@@ -11,11 +10,11 @@ export const SET_MESSAGE = 'SET_MESSAGE'
 export const SET_TOKEN = 'SET_TOKEN'
 export const ON_SESSION_EXPIRED = 'ON_SESSION_EXPIRED'
 
-export type authActionType = setLoadingType | setMessageType | setAuthType | setTokenType | removeTokenType
+export type authActionType = setLoadingType | setMessageType |  setTokenType | removeTokenType
 
 export type setLoadingType = ReturnType<typeof setAuthLoading>
 export type setMessageType = ReturnType<typeof setMessage>
-type setAuthType = ReturnType<typeof setAuth>
+
 type setTokenType = ReturnType<typeof setToken>
 type removeTokenType = ReturnType<typeof removeToken>
 
@@ -25,9 +24,7 @@ export const setAuthLoading = (loading: boolean) => {
 export const setMessage = (message: string) => {
   return { type: SET_MESSAGE, message } as const
 }
-export const setAuth = (auth: boolean) => {
-  return { type: SET_AUTH, auth } as const
-}
+
 
 export const setToken = (token: string) => {
   return { type: SET_TOKEN, token } as const
@@ -61,7 +58,6 @@ export const fetchAuth = (data: dataType, fetchType: number) => async (dispatch:
     const res = fetchType === 0 ? await register(data) : await login(data)
 
     fetchType === 0 && dispatch(setMessage('Welcome on board!'))
-    fetchType !== 0 && dispatch(setAuth(true))
 
     const local = res.data
     let expiresIn = new Date(new Date().getTime() + local.expiresIn * 1000).toString();
@@ -76,7 +72,6 @@ export const fetchAuth = (data: dataType, fetchType: number) => async (dispatch:
 
     fetchType === 0 && setTimeout(() => {
       dispatch(setMessage(''))
-      dispatch(setAuth(true))
     }, 2000)
   }
   catch (e) {
@@ -101,7 +96,7 @@ export function autoLogin() {
         dispatch(setToken(token));
 
         dispatch(onSessionExpired((expiresDate.getTime() - new Date().getTime()) / 1000) as any);
-        dispatch(setAuth(true))
+        // dispatch(setAuth(true))
       }
     }
   };

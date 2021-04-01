@@ -4,7 +4,7 @@ import { todosActionsType, GET_ITEMS, SET_TODO_LOADING, } from './../actions/tod
 
 
 export type itemType = { id: string, label: string, isDone: boolean, isImportant: boolean }
-type todosType = typeof initState;
+export type todosType = typeof initState;
 
 const initState = {
   loading: false,
