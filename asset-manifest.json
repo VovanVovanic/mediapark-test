@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/mediapark-test/static/css/main.e2dbd063.chunk.css",
+    "main.js": "/mediapark-test/static/js/main.df712e16.chunk.js",
+    "main.js.map": "/mediapark-test/static/js/main.df712e16.chunk.js.map",
+    "runtime-main.js": "/mediapark-test/static/js/runtime-main.ce971487.js",
+    "runtime-main.js.map": "/mediapark-test/static/js/runtime-main.ce971487.js.map",
+    "static/js/2.b15f8158.chunk.js": "/mediapark-test/static/js/2.b15f8158.chunk.js",
+    "static/js/2.b15f8158.chunk.js.map": "/mediapark-test/static/js/2.b15f8158.chunk.js.map",
+    "static/js/3.8a2e9f74.chunk.js": "/mediapark-test/static/js/3.8a2e9f74.chunk.js",
+    "static/js/3.8a2e9f74.chunk.js.map": "/mediapark-test/static/js/3.8a2e9f74.chunk.js.map",
+    "index.html": "/mediapark-test/index.html",
+    "static/css/main.e2dbd063.chunk.css.map": "/mediapark-test/static/css/main.e2dbd063.chunk.css.map",
+    "static/js/2.b15f8158.chunk.js.LICENSE.txt": "/mediapark-test/static/js/2.b15f8158.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ce971487.js",
+    "static/js/2.b15f8158.chunk.js",
+    "static/css/main.e2dbd063.chunk.css",
+    "static/js/main.df712e16.chunk.js"
+  ]
+}
